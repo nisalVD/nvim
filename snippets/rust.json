@@ -1,0 +1,46 @@
+{
+  "atest": {
+    "prefix": "atest",
+    "body": [
+      "#[tokio::test]",
+      "async fn ${1:name}() {",
+      "    ${2:unimplemented!();}",
+      "}"
+    ],
+    "description": "#[async test]"
+  },
+  "tinst": {
+    "prefix": "tinst",
+    "body": [
+      "#[tracing::instrument(",
+      "    name = \"${1}\",",
+      "    skip($2)",
+      ")]"
+    ],
+    "description": "#[tracing::instrument]"
+  },
+  "apfn": {
+    "prefix": "apfn",
+    "body": [
+      "pub async fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
+      "    ${5:unimplemented!();}",
+      "}"
+    ],
+    "description": "pub async fn …(…) { … }"
+  },
+  "terror": {
+    "prefix": "terror",
+    "body": ["#[error(\"$1\")]"],
+    "description": "#[error()]"
+  },
+  "tfrom": {
+    "prefix": "tfrom",
+    "body": ["#[from]"],
+    "description": "#[from]"
+  },
+  "tsource": {
+    "prefix": "tsource",
+    "body": ["#[source]"],
+    "description": "#[source]"
+  }
+}
