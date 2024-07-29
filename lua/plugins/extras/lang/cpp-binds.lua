@@ -8,18 +8,19 @@ local function run_code()
 end
 
 function M.register_cpp_binds(buffnr)
-  local opts = { noremap = true, silent = true, buffer = buffnr, prefix = "<leader>" }
-  wk.register({
-    c = {
-      r = {
-        function()
-          vim.cmd(":OverseerRun build_and_run")
-          vim.cmd(":OverseerOpen bottom")
-        end,
-        "Overseer run and build",
-      },
+  wk.add({
+    {
+      "<leader>cr",
+      function()
+        vim.cmd(":OverseerRun build_and_run")
+        vim.cmd(":OverseerOpen bottom")
+      end,
+      desc = "Overseer run and build",
+      remap = false,
+      silent = true,
+      buffer = buffnr,
     },
-  }, opts)
+  })
 end
 
 return M

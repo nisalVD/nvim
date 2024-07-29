@@ -14,26 +14,47 @@ function M.on_attach(_, buffnr)
   vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
   vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 
-  wk.register({
-    c = {
-      e = { ":IncRename ", "Code Rename" },
-      f = {
-        function()
-          formatter.format()
-        end,
-        "format file",
-      },
-      a = { "<cmd>Lspsaga code_action<CR>", "code actions" },
-      t = {
-        f = {
-          function()
-            formatter.toggle()
-          end,
-          "toggle formatter",
-        },
-      },
+  wk.add({
+    { "<leader>ce", ":IncRename", desc = "Code Rename", remap = false, silent = true, buffer = buffnr },
+    {
+      "<leader>ce",
+      function()
+        formatter.format()
+      end,
+      desc = "format file",
+      remap = false,
+      silent = true,
+      buffer = buffnr,
     },
-  }, vim.tbl_extend("keep", { prefix = "<leader>" }, opts))
+    {
+      "<leader>ca",
+      "<cmd>Lspsaga code_action<CR>",
+      desc = "code action",
+      remap = false,
+      silent = true,
+      buffer = buffnr,
+    },
+  })
+  -- wk.register({
+  --   c = {
+  --     e = { ":IncRename ", "Code Rename" },
+  --     f = {
+  --       function()
+  --         formatter.format()
+  --       end,
+  --       "format file",
+  --     },
+  --     a = { "<cmd>Lspsaga code_action<CR>", "code actions" },
+  --     t = {
+  --       f = {
+  --         function()
+  --           formatter.toggle()
+  --         end,
+  --         "toggle formatter",
+  --       },
+  --     },
+  --   },
+  -- }, vim.tbl_extend("keep", { prefix = "<leader>" }, opts))
 
   vim.keymap.set("n", "gl", function()
     vim.diagnostic.open_float()

@@ -4,4 +4,6 @@ if vim.g.neovide then
   vim.keymap.set("n", "<A-v>", '"+p', { noremap = true })
   -- remap <c-v> to paste from clipboard in insert mode insert mode key is <c-r>+
   vim.keymap.set("i", "<A-v>", "<C-r>+", { noremap = true })
+  -- codeium
+  vim.g.codeium_disable_bindings = 1
 end
