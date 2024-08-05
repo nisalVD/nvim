@@ -17,7 +17,7 @@ function M.on_attach(_, buffnr)
   wk.add({
     { "<leader>ce", ":IncRename", desc = "Code Rename", remap = false, silent = true, buffer = buffnr },
     {
-      "<leader>ce",
+      "<leader>cf",
       function()
         formatter.format()
       end,
