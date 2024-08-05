@@ -17,6 +17,8 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local compare = require("cmp.config.compare")
+      local lspkind = require("lspkind")
+
       vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#7AA2F7" })
 
       local source_names = {
@@ -159,29 +161,10 @@ return {
           { name = "crates" },
         }),
         formatting = {
-          fields = { "abbr", "kind", "menu" },
-          expandable_indicator = true,
-          format = function(entry, item)
-            local prev_kind = item.kind
-            -- local max_width = 80
-            local duplicates_default = nil
-            -- if max_width ~= 0 and #item.abbr > max_width then
-            --   item.abbr = string.sub(item.abbr, 1, max_width - 1) .. icons.ui.Ellipsis
-            -- end
-            -- item.kind = icons.kind[item.kind]
-            item.menu = source_names[entry.source.name]
-            item.dup = dupes[entry.source.name] or duplicates_default
-
-            local vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, item)
-            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. (strings[1] or "")
-            kind.menu = "    (" .. (strings[2] or "") .. ")"
-
-            kind.kind = kind.kind .. " " .. prev_kind .. " "
-
-            return kind
-          end,
+          format = lspkind.cmp_format({
+            maxwidth = 50,
+            ellipsis_char = "...",
+          }),
         },
       })
 
