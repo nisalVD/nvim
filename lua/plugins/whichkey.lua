@@ -15,7 +15,7 @@ return {
       wk.add({
         { "<leader>p", group = "files" },
         { "<leader>y", '"+y', desc = "copy to clipboard", mode = { "n", "v" } },
-        { "<leader>x", '"+x', desc = "delete to clipboard", mode = { "n", "v" } },
+        -- { "<leader>x", '"+x', desc = "delete to clipboard", mode = { "n", "v" } },
       })
     end,
   },

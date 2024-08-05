@@ -8,7 +8,7 @@ return {
       { "jbyuki/one-small-step-for-vimkind" },
       { "jay-babu/mason-nvim-dap.nvim" },
       { "nvim-neotest/nvim-nio" },
-      { "LiadOz/nvim-dap-repl-highlights", opts = {} },
+      -- { "LiadOz/nvim-dap-repl-highlights", opts = {} },
     },
     -- stylua: ignore
     keys = {

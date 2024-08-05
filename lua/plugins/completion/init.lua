@@ -118,7 +118,13 @@ return {
         },
 
         mapping = cmp.mapping.preset.insert({
-          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-Space>"] = cmp.mapping.complete({
+            config = {
+              sources = {
+                { name = "nvim_lsp" },
+              },
+            },
+          }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           -- ["<C-Space>"] = cmp.mapping.complete(), -- show completion

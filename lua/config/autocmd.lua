@@ -1,32 +1,33 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
--- persistent folds
 
-local save_fold = augroup("Persistent Folds", { clear = true })
-autocmd("BufWinLeave", {
-  pattern = "*.*",
-  callback = function()
-    vim.cmd.mkview()
+-- persistent folds
+local view_group = augroup("auto_view", { clear = true })
+autocmd({ "BufWinLeave", "BufWritePost", "WinLeave" }, {
+  desc = "Save view with mkview for real files",
+  group = view_group,
+  callback = function(args)
+    if vim.b[args.buf].view_activated then
+      vim.cmd.mkview({ mods = { emsg_silent = true } })
+    end
   end,
-  group = save_fold,
 })
 autocmd("BufWinEnter", {
-  pattern = "*.*",
-  callback = function()
-    vim.cmd.loadview({ mods = { emsg_silent = true } })
+  desc = "Try to load file view if available and enable view saving for real files",
+  group = view_group,
+  callback = function(args)
+    if not vim.b[args.buf].view_activated then
+      local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+      local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+      local ignore_filetypes = { "gitcommit", "gitrebase", "svg", "hgcommit" }
+      if buftype == "" and filetype and filetype ~= "" and not vim.tbl_contains(ignore_filetypes, filetype) then
+        vim.b[args.buf].view_activated = true
+        vim.cmd.loadview({ mods = { emsg_silent = true } })
+      end
+    end
   end,
-  group = save_fold,
 })
 
-vim.api.nvim_exec(
-  [[
-augroup SetMarkdownFileType
-  autocmd!
-  autocmd BufRead,BufNewFile /Users/nisaldon/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application\ Support/co.noteplan.NotePlan3/Notes/** setfiletype markdown
-augroup END
-]],
-  false
-)
 -- vim.cmd([[
 --     augroup projectconfig
 --     autocmd!
