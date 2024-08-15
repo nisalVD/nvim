@@ -34,7 +34,7 @@ return {
       {
         "<leader>pf",
         function()
-          require("telescope.builtin").find_files()
+          require("telescope.builtin").lsp_document_symbols()
         end,
         desc = "find files",
       },

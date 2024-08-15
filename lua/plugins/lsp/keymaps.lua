@@ -15,7 +15,7 @@ function M.on_attach(_, buffnr)
   vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 
   wk.add({
-    { "<leader>ce", ":IncRename", desc = "Code Rename", remap = false, silent = true, buffer = buffnr },
+    { "<leader>ce", ":IncRename ", desc = "Code Rename", remap = false, silent = true, buffer = buffnr },
     {
       "<leader>cf",
       function()
