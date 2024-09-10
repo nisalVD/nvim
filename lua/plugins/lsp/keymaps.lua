@@ -17,6 +17,16 @@ function M.on_attach(_, buffnr)
   wk.add({
     { "<leader>ce", ":IncRename ", desc = "Code Rename", remap = false, silent = true, buffer = buffnr },
     {
+      "<leader>tf",
+      function()
+        formatter.toggle()
+      end,
+      desc = "toggle format",
+      remap = false,
+      silent = true,
+      buffer = buffnr,
+    },
+    {
       "<leader>cf",
       function()
         formatter.format()
