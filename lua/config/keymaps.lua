@@ -2,7 +2,7 @@ local keymap = vim.keymap.set
 local utils = require("config.utils")
 
 -- rebind alternate file key to alt enter
-keymap("n", "<leader>f", ":Ex<cr>", { noremap = true })
+-- keymap("n", "<leader>f", ":Ex<cr>", { noremap = true })
 
 local function toggle_qf()
   local res = vim.fn.getqflist({ winid = 1 })["winid"]

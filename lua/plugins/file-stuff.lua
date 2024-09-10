@@ -162,7 +162,7 @@ return {
     lazy = false,
     keys = {
       { "<leader>o", desc = "Oil" },
-      { "<leader>of", "<cmd>Oil %:h<cr>", desc = "Oil" },
+      { "<leader>f", "<cmd>Oil %:h<cr>", desc = "Oil" },
     },
     opts = {
       default_file_explorer = false,
