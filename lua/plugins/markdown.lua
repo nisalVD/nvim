@@ -21,9 +21,9 @@ return {
         desc = "Obsidian Today",
       },
       {
-        "<leader>of",
+        "<leader>og",
         "<cmd>ObsidianSearch<cr>",
-        desc = "Obsidian Find",
+        desc = "Obsidian Grep",
       },
       {
         "<leader>op",
