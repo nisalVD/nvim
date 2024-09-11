@@ -200,6 +200,23 @@ return {
     },
   },
   {
+    "AckslD/nvim-neoclip.lua",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>cc",
+        "<cmd>Telescope neoclip<cr>",
+        desc = "Clipboard",
+      },
+    },
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+    },
+    config = function()
+      require("neoclip").setup()
+    end,
+  },
+  {
     "ahmedkhalf/project.nvim",
     event = "BufRead",
     config = function()
