@@ -8,7 +8,9 @@ return {
       { "<leader>hf", "<cmd>DiffviewFileHistory --follow %<cr>'", desc = "File history" },
       { "<leader>hl", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Range history", mode = { "v" } },
       { "<leader>hl", "<Cmd>.DiffviewFileHistory --follow<CR>", desc = "Line History" },
-      { "<leader>d", "<cmd>DiffviewOpen<cr>", desc = "Repo Diff" },
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open git diff" },
+      { "<leader>gf", "<cmd>DiffviewToggleFiles<cr>", desc = "git toggle files" },
+      { "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Close git diff" },
     },
     config = function(_, opts)
       local actions = require("diffview.actions")
@@ -97,7 +99,7 @@ return {
     keys = {
       { "<leader>gtb", "<cmd>:Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Line Blame" },
       { "<leader>gts", "<cmd>:Gitsigns toggle_signs<cr>", desc = "Toggle Git Signs" },
-      { "<leader>gdh", "<cmd>:Gitsigns preview_hunk_inline<cr>", desc = "Toggle Git Signs" },
+      { "<leader>ghd", "<cmd>:Gitsigns preview_hunk_inline<cr>", desc = "Toggle Git Signs" },
     },
     event = "BufReadPre",
     config = function()
