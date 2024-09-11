@@ -3,18 +3,22 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     keys = {
-      { "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "Open Git Diff View" },
-      { "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "Open Git Diff View" },
+      { "<leader>hh", "<cmd>DiffviewFileHistory<cr>", desc = "Repo History" },
+      { "<leader>hq", "<cmd>DiffviewClose<cr>", desc = "Close Diff View" },
+      { "<leader>hf", "<cmd>DiffviewFileHistory --follow %<cr>'", desc = "File history" },
+      { "<leader>hl", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Range history", mode = { "v" } },
+      { "<leader>hl", "<Cmd>.DiffviewFileHistory --follow<CR>", desc = "Line History" },
+      { "<leader>d", "<cmd>DiffviewOpen<cr>", desc = "Repo Diff" },
     },
     config = function(_, opts)
       local actions = require("diffview.actions")
 
       require("diffview").setup({
-        hooks = { -- disable file panel by default
-          view_opened = function()
-            require("diffview.actions").toggle_files()
-          end,
-        },
+        -- hooks = { -- disable file panel by default
+        --   view_opened = function()
+        --     require("diffview.actions").toggle_files()
+        --   end,
+        -- },
         keymaps = {
           view = {
             {
