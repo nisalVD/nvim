@@ -196,6 +196,7 @@ return {
   { import = "plugins.extras.lang.deno" },
   { import = "plugins.extras.lang.go" },
   { import = "plugins.extras.lang.json" },
+  { import = "plugins.extras.lang.harper" },
   -- { import = "plugins.extras.lang.glslls" },
   -- { import = "plugins.extras.lang.gleam" },
   {

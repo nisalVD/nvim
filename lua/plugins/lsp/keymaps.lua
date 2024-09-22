@@ -7,15 +7,17 @@ function M.on_attach(_, buffnr)
   local opts = { noremap = true, silent = true, buffer = buffnr }
   vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
   vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<cr>", opts)
+  -- vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<cr>", opts)
   vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
   vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
   vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
   vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
   vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+  vim.keymap.set("n", "<leader>ce", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, { expr = true, desc = "Code rename" })
 
   wk.add({
-    { "<leader>ce", ":IncRename ", desc = "Code Rename", remap = false, silent = true, buffer = buffnr },
     {
       "<leader>tf",
       function()

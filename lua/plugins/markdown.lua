@@ -46,10 +46,32 @@ return {
       -- see below for full list of optional dependencies 👇
     },
     opts = {
-      mappings = {},
       dir = "/Users/nisaldon/notes-obsidian/personal/", -- no need to call 'vim.fn.expand' here
       daily_notes = {
         folder = "daily-notes",
+      },
+      mappings = {
+        -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+        ["gf"] = {
+          action = function()
+            return require("obsidian").util.gf_passthrough()
+          end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
+        -- Toggle check-boxes.
+        ["<leader>ch"] = {
+          action = function()
+            return require("obsidian").util.toggle_checkbox()
+          end,
+          opts = { buffer = true },
+        },
+        -- Smart action depending on context, either follow link or toggle checkbox.
+        ["<cr>"] = {
+          action = function()
+            return require("obsidian").util.smart_action()
+          end,
+          opts = { buffer = true, expr = true },
+        },
       },
 
       -- see below for full list of options 👇
@@ -78,6 +100,14 @@ return {
     ft = { "markdown", "norg", "rmd", "org" },
     config = function(_, opts)
       require("render-markdown").setup(opts)
+
+      -- vim.keymap.set("n", "gf", function()
+      --   if require("obsidian").util.cursor_on_markdown_link() then
+      --     return "<cmd>ObsidianFollowLink<CR>"
+      --   else
+      --     return "gf"
+      --   end
+      -- end, { noremap = false, expr = true })
       -- LazyVim.toggle.map("<leader>um", {
       --   name = "Render Markdown",
       --   get = function()
@@ -102,5 +132,19 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+  },
+  {
+    "preservim/vim-pencil",
+    cmd = {
+      "Pencil",
+      "TogglePencil",
+      "SoftPencil",
+      "HardPencil",
+    },
+    init = function()
+      vim.g["pencil#wrapModeDefault"] = "soft"
+      vim.g["pencil#autoformat"] = 1
+      vim.g["pencil#textwidth"] = 50
+    end,
   },
 }
