@@ -24,6 +24,7 @@ local options = {
   foldenable = true,
   foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
   foldlevelstart = 99,
+  textwidth = 80,
 }
 
 for k, v in pairs(options) do
