@@ -5,6 +5,12 @@ return {
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "andymass/vim-matchup",
+        init = function()
+          vim.g.matchup_matchparen_deferred = 1
+        end,
+      },
     },
     config = function()
       -- import nvim-treesitter plugin
@@ -15,6 +21,9 @@ return {
         highlight = {
           enable = true,
         },
+        -- vim-matchup plugin
+        matchup = { enable = true },
+
         -- enable indentation
         indent = { enable = true },
         -- enable autotagging (w/ nvim-ts-autotag plugin)
@@ -157,10 +166,10 @@ return {
     cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     opts = { use_default_keymaps = false },
   },
-  {
-    -- Rainbow parentheses
-    "HiPhish/rainbow-delimiters.nvim",
-    name = "rainbow",
-    event = { "BufRead", "BufNewFile" },
-  },
+  -- {
+  --   -- Rainbow parentheses
+  --   "HiPhish/rainbow-delimiters.nvim",
+  --   name = "rainbow",
+  --   event = { "BufRead", "BufNewFile" },
+  -- },
 }

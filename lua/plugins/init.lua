@@ -30,13 +30,6 @@ return {
       require("nvim-surround").setup()
     end,
   },
-  {
-    "andymass/vim-matchup",
-    event = { "BufReadPost" },
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
-  },
   -- peek line numbers
   { "nacro90/numb.nvim", event = "BufReadPre", config = true },
   -- increment plugin
