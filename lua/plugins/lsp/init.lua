@@ -7,11 +7,28 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "j-hui/fidget.nvim",
       "echasnovski/mini.icons",
+      { "smjonas/inc-rename.nvim", config = true },
+      -- code actions
+      { "Chaitanyabsprip/fastaction.nvim", config = true },
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP keybindings",
-        callback = require("plugins.lsp.keymaps").on_attach,
+        callback = function(client, bufnr)
+          require("plugins.lsp.keymaps").on_attach(client, bufnr)
+          -- extra binding that requires a depedency
+          vim.keymap.set("n", "ce", function()
+            return ":IncRename " .. vim.fn.expand("<cword>")
+          end, { expr = true, desc = "rename" })
+          -- code actions
+          vim.keymap.set("n", "<leader>ca", '<cmd>lua require("fastaction").code_action()<CR>', { buffer = bufnr })
+          vim.keymap.set(
+            "v",
+            "<leader>ca",
+            "<esc><cmd>lua require('fastaction').range_code_action()<CR>",
+            { buffer = bufnr }
+          )
+        end,
       })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -78,6 +95,8 @@ return {
   },
   -- formatters
   { import = "plugins.lsp.formatter" },
+  -- linter
+  { import = "plugins.lsp.linter" },
   -- extra langs
   { import = "plugins.extras.lang.rust" },
 }

@@ -32,10 +32,6 @@ function M.on_attach(_, buffnr)
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   end, { desc = "toggle inlay hints", buffer = buffnr })
 
-  keymap("n", "<leader>ca", function()
-    vim.lsp.buf.code_action()
-  end, { desc = "code action", silent = true, buffer = buffnr })
-
   -- diagnostics
   keymap("n", "gl", function()
     vim.diagnostic.open_float()
