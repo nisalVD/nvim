@@ -6,7 +6,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "j-hui/fidget.nvim",
-      'echasnovski/mini.icons'
+      "echasnovski/mini.icons",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -56,7 +56,7 @@ return {
           end,
           -- custom configurations
           harper_ls = function()
-            lspconfig['harper_ls'].setup({
+            lspconfig["harper_ls"].setup({
               capabilities = capabilities,
               filetypes = { "markdown" },
             })
@@ -76,6 +76,9 @@ return {
       end
     end,
   },
+  -- formatters
+  { import = "plugins.lsp.format" },
+  -- extra langs
   { import = "plugins.extras.lang.rust" },
 }
 
