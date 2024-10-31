@@ -186,18 +186,7 @@ return {
   {
     "folke/trouble.nvim",
     config = true,
-    keys = {
-      {
-        "<leader>Tt",
-        "<cmd>TroubleToggle<cr>",
-        desc = "Toggle Trouble",
-      },
-      {
-        "<leader>Td",
-        "<cmd>Trouble workspace_diagnostics<cr>",
-        desc = "Toggle Trouble",
-      },
-    },
+    cmd = {"Trouble"}
   },
   {
     "AckslD/nvim-neoclip.lua",
