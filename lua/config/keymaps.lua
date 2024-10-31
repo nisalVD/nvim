@@ -1,6 +1,4 @@
 local keymap = vim.keymap.set
-local utils = require("config.utils")
-
 -- rebind alternate file key to alt enter
 -- keymap("n", "<leader>f", ":Ex<cr>", { noremap = true })
 

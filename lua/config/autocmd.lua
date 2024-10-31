@@ -27,18 +27,3 @@ autocmd("BufWinEnter", {
     end
   end,
 })
-
--- vim.cmd([[
---     augroup projectconfig
---     autocmd!
---
---
---     autocmd DirChanged * if v:event.scope ==# "global" | call v:lua.require('config.projectconfig').source() | endif
---
---     if v:vim_did_enter
---     lua require("config.projectconfig").source()
---     else
---     autocmd VimEnter * lua require("config.projectconfig").source()
---     endif
---     augroup END
--- ]])
