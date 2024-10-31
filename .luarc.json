@@ -93,5 +93,8 @@
         "/Users/nisaldon/.local/share/nvim/lazy/neoconf.nvim/types/lua",
         "/Users/nisaldon/.config/nvim/lua",
         "${3rd}/luv/library"
+    ],
+    "diagnostics.globals": [
+        "MiniIcons"
     ]
 }

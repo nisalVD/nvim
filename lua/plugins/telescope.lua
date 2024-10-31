@@ -125,7 +125,7 @@ return {
       "ahmedkhalf/project.nvim",
       "tsakirist/telescope-lazy.nvim",
       "ahmedkhalf/project.nvim",
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+      "echasnovski/mini.icons", -- optional, for file icons
       "nvim-telescope/telescope-live-grep-args.nvim",
       {
         "danielfalk/smart-open.nvim",

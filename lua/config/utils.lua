@@ -16,4 +16,12 @@ M.execute_macro_over_visual_range = function()
   vim.fn.execute(":'<,'>normal @" .. vim.fn.nr2char(vim.fn.getchar()))
 end
 
+
+M.keymap = function(mode, lhs, rhs, opts)
+  opts = opts or {}
+  opts.remap = opts.remap or true
+  opts.silent = opts.silent or false
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 return M

@@ -2,7 +2,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+      "echasnovski/mini.icons",
     },
     cmd = {
       "NvimTreeOpen",
@@ -171,6 +171,6 @@ return {
       },
     },
     -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.icons" },
   },
 }

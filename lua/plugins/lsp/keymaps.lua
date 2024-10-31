@@ -1,81 +1,45 @@
 local formatter = require("plugins.lsp.format")
+local keymap = require('config.utils').keymap
 
 local M = {}
 
 function M.on_attach(_, buffnr)
-  local wk = require("which-key")
-  local opts = { noremap = true, silent = true, buffer = buffnr }
-  vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  -- vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<cr>", opts)
-  vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
-  vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-  vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  vim.keymap.set("n", "<leader>ce", function()
-    return ":IncRename " .. vim.fn.expand("<cword>")
-  end, { expr = true, desc = "Code rename" })
+  -- keymaps
+  keymap("n", "K", function() vim.lsp.buf.hover() end, {desc = "lsp hover"})
+  keymap("n", "<C-k>", vim.lsp.buf.signature_help, {desc = "lsp signature help"})
+  keymap("n", "gd", function() vim.lsp.buf.definition() end, {desc = "go to definition"})
+  keymap("n", "gD", function() vim.lsp.buf.declaration() end, {desc = "go to declaration"})
+  keymap("n", "gi", function() vim.lsp.buf.implementation() end, {desc = "go to implementation"})
+  keymap("n", "go", function() vim.lsp.buf.type_definition() end, {desc = "go to type definition"})
+  keymap("n", "gr", function() vim.lsp.buf.references() end, {desc = "find references"})
 
-  wk.add({
-    {
-      "<leader>tf",
-      function()
-        formatter.toggle()
-      end,
-      desc = "toggle format",
-      remap = false,
-      silent = true,
-      buffer = buffnr,
-    },
-    {
-      "<leader>cf",
-      function()
-        formatter.format()
-      end,
-      desc = "format file",
-      remap = false,
-      silent = true,
-      buffer = buffnr,
-    },
-    {
-      "<leader>ca",
-      "<cmd>Lspsaga code_action<CR>",
-      desc = "code action",
-      remap = false,
-      silent = true,
-      buffer = buffnr,
-    },
-  })
-  -- wk.register({
-  --   c = {
-  --     e = { ":IncRename ", "Code Rename" },
-  --     f = {
-  --       function()
-  --         formatter.format()
-  --       end,
-  --       "format file",
-  --     },
-  --     a = { "<cmd>Lspsaga code_action<CR>", "code actions" },
-  --     t = {
-  --       f = {
-  --         function()
-  --           formatter.toggle()
-  --         end,
-  --         "toggle formatter",
-  --       },
-  --     },
-  --   },
-  -- }, vim.tbl_extend("keep", { prefix = "<leader>" }, opts))
+  keymap("n", "gr", function() vim.lsp.buf.references() end, {desc = "find references"})
 
-  vim.keymap.set("n", "gl", function()
-    vim.diagnostic.open_float()
-  end, opts)
-  vim.keymap.set("n", "gL", function()
-    vim.diagnostic.open_float({ scope = "line" })
-  end, opts)
-  vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
-  vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
+  -- formatting
+  keymap("n", "<leader>tf", function()
+    formatter.toggle()
+  end, { desc = "toggle format", buffer = buffnr })
+  keymap("n", "<leader>ti", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end, { desc = "toggle inlay hints", buffer = buffnr })
+
+
+  keymap("n", "<leader>cf", function()
+    formatter.format()
+  end, { desc = "format file", buffer = buffnr })
+
+  keymap(
+    "n",
+    "<leader>ca",
+    function() vim.lsp.buf.code_action() end,
+    { desc = "code action", silent = true, buffer = buffnr }
+  )
+
+  -- diagnostics
+  keymap("n", "gl", function() vim.diagnostic.open_float() end, {desc = "open diagnostic float"})
+  keymap("n", "gL", function() vim.diagnostic.open_float({ scope = "line" }) end, {desc = "open line diagnostics"})
+  keymap("n", "[d", function() vim.diagnostic.goto_prev() end, {desc = "go to previous diagnostic"})
+  keymap("n", "]d", function() vim.diagnostic.goto_next() end, {desc = "go to next diagnostic"})
 end
 
 return M
