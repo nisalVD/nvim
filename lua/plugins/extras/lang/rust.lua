@@ -15,7 +15,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", -- pin version to 4
+    version = "^5", -- Recommended
     ft = { "rust" },
     dependencies = {
       "nvim-lua/plenary.nvim",
