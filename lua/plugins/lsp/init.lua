@@ -77,7 +77,7 @@ return {
     end,
   },
   -- formatters
-  { import = "plugins.lsp.format" },
+  { import = "plugins.lsp.formatter" },
   -- extra langs
   { import = "plugins.extras.lang.rust" },
 }
