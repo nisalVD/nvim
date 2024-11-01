@@ -102,6 +102,7 @@ return {
   -- extra lang config
   { import = "plugins.extras.lang.rust" },
   { import = "plugins.extras.lang.go" },
+  { import = "plugins.extras.lang.haskell" },
 }
 
 -- return {
