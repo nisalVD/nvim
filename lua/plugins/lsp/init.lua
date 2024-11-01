@@ -10,6 +10,8 @@ return {
       { "smjonas/inc-rename.nvim", config = true },
       -- code actions
       { "Chaitanyabsprip/fastaction.nvim", config = true },
+      -- completion for capabilities
+      "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -31,7 +33,7 @@ return {
         end,
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
       require("mason").setup({})
@@ -97,8 +99,9 @@ return {
   { import = "plugins.lsp.formatter" },
   -- linter
   { import = "plugins.lsp.linter" },
-  -- extra langs
+  -- extra lang config
   { import = "plugins.extras.lang.rust" },
+  { import = "plugins.extras.lang.go" },
 }
 
 -- return {

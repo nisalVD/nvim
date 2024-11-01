@@ -22,22 +22,6 @@ return {
     },
   },
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        gopls = {},
-      },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        gopls = {},
-      },
-    },
-  },
-  {
     "leoluz/nvim-dap-go",
     dependencies = {
       "mfussenegger/nvim-dap",
