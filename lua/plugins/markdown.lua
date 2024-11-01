@@ -95,7 +95,7 @@ return {
       },
     },
     keys = {
-      { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Markdown toggle" },
+      { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "toggle markdown render" },
     },
     ft = { "markdown", "norg", "rmd", "org" },
     config = function(_, opts)
