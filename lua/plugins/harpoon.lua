@@ -4,6 +4,7 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       {
@@ -113,8 +114,6 @@ return {
 
       ---@type HarpoonList
       local main_term_list = harpoon:list("main_terms")
-      ---@type HarpoonList
-      local sub_term_list = harpoon:list("sub_terms")
       keymap("n", "<leader>q", function()
         select_term(1, main_term_list)
       end)
@@ -128,7 +127,9 @@ return {
         pattern = "*",
         callback = function()
           remove_closed_terms(main_term_list)
-          remove_closed_terms(sub_term_list)
+          remove_closed_terms(harpoon:list("sub_term1"))
+          remove_closed_terms(harpoon:list("sub_term2"))
+          remove_closed_terms(harpoon:list("sub_term3"))
         end,
       })
 
@@ -137,7 +138,9 @@ return {
         pattern = "term://*",
         callback = function()
           remove_closed_terms(main_term_list)
-          remove_closed_terms(sub_term_list)
+          remove_closed_terms(harpoon:list("sub_term1"))
+          remove_closed_terms(harpoon:list("sub_term2"))
+          remove_closed_terms(harpoon:list("sub_term3"))
         end,
       })
 
@@ -145,21 +148,21 @@ return {
       keymap("n", "<leader>ts", function()
         vim.cmd("belowright 12split")
         vim.cmd("set winfixheight")
-        select_term(1, sub_term_list)
+        select_term(1, harpoon:list("sub_term1"))
         vim.cmd.startinsert()
-      end)
+      end, { desc = "terminal split" })
 
-      keymap("n", "<leader>tt", function()
+      keymap("n", "<leader>tT", function()
         vim.cmd.tabnew()
-        select_term(1, sub_term_list)
+        select_term(1, harpoon:list("sub_term2"))
         vim.cmd.startinsert()
-      end)
+      end, { desc = "terminal tab" })
 
       keymap("n", "<leader>tv", function()
         vim.cmd.vsplit()
-        select_term(2, sub_term_list)
+        select_term(1, harpoon:list("sub_term3"))
         vim.cmd.startinsert()
-      end)
+      end, { desc = "terminal vsplit" })
 
       -- Command that I use for debugging
       vim.api.nvim_create_user_command("HarpoonShowMainTermList", function()

@@ -25,27 +25,26 @@ return {
       }
     end,
   },
-  -- TODO: fix this
-  -- {
-  --   "saecki/crates.nvim",
-  --   event = { "BufRead Cargo.toml" },
-  --   dependencies = {
-  --     "hrsh7th/nvim-cmp",
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  --   config = function()
-  --     require("crates").setup({
-  --       lsp = {
-  --         enabled = true,
-  --         actions = true,
-  --         completion = true,
-  --       },
-  --       src = {
-  --         cmp = {
-  --           enabled = true,
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    dependencies = {
+      "hrsh7th/nvim-cmp",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("crates").setup({
+        lsp = {
+          enabled = true,
+          actions = true,
+          completion = true,
+        },
+        completion = {
+          cmp = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
 }
