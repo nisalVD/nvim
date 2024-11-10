@@ -1,8 +1,10 @@
 return {
   "akinsho/nvim-toggleterm.lua",
-  config = true,
+  opts = {
+    direction = "float",
+  },
   cmd = "ToggleTerm",
   keys = {
-    { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "ToggleTerm" },
+    { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "ToggleTerm", mode = { "n", "t" } },
   },
 }
