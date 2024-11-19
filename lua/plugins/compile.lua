@@ -13,10 +13,8 @@ return {
     { "m00qek/baleia.nvim", tag = "v1.3.0" },
   },
   keys = {
-    { "<c-r>", "<cmd>Recompile<cr>", desc = "recompile" },
+    { "<c-c>", "<cmd>Recompile<cr>", desc = "recompile" },
     { "<leader>cr", "<cmd>Compile<cr>", desc = "compile" },
-    { "]c", "<cmd>NextError<cr>", desc = "compile" },
-    { "[c", "<cmd>PrevError<cr>", desc = "compile" },
   },
   cmd = {
     "Compile",
@@ -47,5 +45,19 @@ return {
         },
       },
     }
+
+    vim.api.nvim_create_augroup("CompileMode", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "CompilationFinished",
+      group = "CompileMode",
+      callback = function(event)
+        local code = event.data.code
+        if code ~= 0 then
+          vim.cmd("QuickfixErrors")
+        else
+          vim.cmd("cclose")
+        end
+      end,
+    })
   end,
 }
