@@ -207,6 +207,15 @@ return {
     end,
   },
   {
+    "chrisgrieser/nvim-scissors",
+    config = true,
+    cmd = { "ScissorsAddNewSnippet", "ScissorsEditSnippet" },
+    dependencies = "nvim-telescope/telescope.nvim",
+    opts = {
+      snippetDir = "~/.config/nvim/snippets/",
+    },
+  },
+  {
     "L3MON4D3/LuaSnip",
     dependencies = {
       {

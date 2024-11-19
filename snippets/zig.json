@@ -1,0 +1,5 @@
+{
+  "asf32": { "body": "@as(f32, @floatFromInt($1))", "prefix": "asf32" },
+  "asi32": { "body": "@as(i32, @intFromFloat($1))", "prefix": "asi32" }
+}
+
