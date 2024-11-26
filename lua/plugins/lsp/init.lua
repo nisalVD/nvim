@@ -80,6 +80,29 @@ return {
               filetypes = { "markdown" },
             })
           end,
+
+          denols = function()
+            lspconfig["denols"].setup({
+              capabilities = capabilities,
+              root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+              on_attach = function(client, bufnr)
+                -- vim.cmd "LspStop ts_ls"
+              end,
+            })
+          end,
+
+          tsserver = function()
+            lspconfig["tsserver"].setup({
+              capabilities = capabilities,
+              root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
+              filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+              single_file_support = false,
+              on_attach = function(client, bufnr)
+                -- Disable formatting from tsserver
+                client.server_capabilities.document_formatting = false
+              end,
+            })
+          end,
         },
       })
 
