@@ -24,7 +24,7 @@ return {
     ---@type CompileModeOpts
     vim.g.compile_mode = {
       -- to add ANSI escape code support, add:
-      default_command = "odin run .",
+      default_command = "odin run src -out:build/program",
       baleia_setup = true,
       error_regexp_table = {
         typescript = {
@@ -39,6 +39,13 @@ return {
 
           -- /Users/nisaldon/apps/odin-starter/hellope.odin(8:3) Error: Undeclared name: sadas
           regex = "^\\(.\\+\\)(\\([1-9][0-9]*\\):\\([1-9][0-9]*\\)) Error:",
+          filename = 1,
+          row = 2,
+          col = 3,
+        },
+        rust = {
+          -- --> src/main.rs:6:8
+          regex = "^\\s*--> \\(.\\+\\):\\([1-9][0-9]*\\):\\([1-9][0-9]*\\)",
           filename = 1,
           row = 2,
           col = 3,

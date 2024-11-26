@@ -74,6 +74,7 @@ return {
       scss = { "prettierd", "prettier", stop_after_first = true },
       sh = { "shellcheck" },
       go = { "gofmt" },
+      sql = { "sql-formatter" },
     },
     -- Set default options
     default_format_opts = {
